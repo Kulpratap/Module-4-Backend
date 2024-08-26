@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.storage.node.movies_title
+        - node.type.movie
+    module:
+        - custom_movie
+id: node.movie.movies_title
+field_name: movies_title
+entity_type: node
+bundle: movie
+label: 'Movie Title'
+description: 'The title of the Movie.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+    max_length: 255
+    is_ascii: false
+    case_sensitive: false
+field_type: string

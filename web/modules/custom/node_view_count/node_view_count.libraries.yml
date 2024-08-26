@@ -1,0 +1,5 @@
+view_count:
+  version: 1.x
+  css:
+    theme:
+      css/view_count.css: {}

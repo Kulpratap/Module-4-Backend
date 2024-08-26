@@ -1,0 +1,14 @@
+entity.custom_movie.settings:
+  path: 'admin/structure/custom-movie'
+  defaults:
+    _form: '\Drupal\custom_movie\Form\CustomMovieSettingsForm'
+    _title: 'Custom movie'
+  requirements:
+    _permission: 'administer custom_movie'
+custom_movie.movie_budget_form:
+  path: '/admin/reports/movie-budget'
+  defaults:
+    _form: '\Drupal\custom_movie\Form\MovieBudgetForm'
+    _title: 'Movie Budget Settings'
+  requirements:
+    _permission: 'access movie budget form'

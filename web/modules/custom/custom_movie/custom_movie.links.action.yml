@@ -1,0 +1,5 @@
+custom_movie.add_form:
+  title: 'Add custom movie'
+  route_name: entity.custom_movie.add_form
+  appears_on:
+    - entity.custom_movie.collection

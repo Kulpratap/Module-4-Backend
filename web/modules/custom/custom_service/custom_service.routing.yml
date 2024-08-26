@@ -1,0 +1,7 @@
+custom_service:
+  path: '/custom_service'
+  defaults:
+    _controller: '\Drupal\custom_service\Controller\CustomServiceController::message'
+    _title: 'Custom Service '
+  requirements:
+    _permission: 'access content'

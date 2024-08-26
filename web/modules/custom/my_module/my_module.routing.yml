@@ -1,0 +1,16 @@
+my_module.custom_page:
+  path: '/admin/custom-page'
+  defaults:
+    _controller: '\Drupal\my_module\Controller\CustomPageController::customPage'
+    _title: 'Custom Page'
+  requirements:
+    _permission: 'access custom page'
+
+my_module.campaign_value:
+  path: '/campaign/value/{value}'
+  defaults:
+    _controller: '\Drupal\my_module\Controller\CampaignValueController::value'
+    _title: 'Campaign Value'
+  requirements:
+    _access: TRUE
+    value: \d+

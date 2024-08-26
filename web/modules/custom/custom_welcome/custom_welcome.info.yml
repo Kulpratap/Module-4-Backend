@@ -1,0 +1,7 @@
+name: 'Custom Welcome'
+type: module
+description: 'Displays a welcome message with the user role and redirects upon login.'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - drupal:block

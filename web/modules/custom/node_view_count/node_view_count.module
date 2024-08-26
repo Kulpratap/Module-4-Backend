@@ -1,0 +1,27 @@
+<?php
+
+use Drupal\node\NodeInterface;
+
+
+/**
+ * Implements hook_node_view().
+ */
+function node_view_count_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+$current_user = \Drupal::currentUser();
+  if (($entity instanceof NodeInterface ) && $current_user->isAuthenticated()) {
+    $nid = $entity->id();
+    $session = \Drupal::request()->getSession();
+    $view_count = $session->get('node_view_count_' . $nid, 0);
+    $view_count++;
+    $session->set('node_view_count_' . $nid, $view_count);
+
+    $build['node_view_count'] = [
+      '#cache' => [
+        'contexts' => ['session'],
+        'max-age' => 0,
+      ],
+    ];
+
+    \Drupal::messenger()->addStatus(t('This node has been viewed @count times in this session.', ['@count' => $view_count]));
+  }
+}

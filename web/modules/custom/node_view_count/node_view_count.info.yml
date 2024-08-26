@@ -1,0 +1,7 @@
+name: 'Node View Count'
+type: module
+description: 'Tracks and displays the number of times a node is viewed in a session.'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - drupal:node
