@@ -25,8 +25,7 @@ use Drupal\Core\Field\FieldDefinitionInterface;
  */
 
 
-class CustomFieldTypeTask extends FieldItemBase
-{
+class CustomFieldTypeTask extends FieldItemBase {
 
   /**
    * {@inheritDoc}
@@ -56,39 +55,34 @@ class CustomFieldTypeTask extends FieldItemBase
   /**
    * {@inheritdoc}
    */
-  public function isEmpty()
-  {
+  public function isEmpty() {
     $value = $this->get('red')->getValue();
     return $value === NULL || $value === '';
   }
   /**
    * {@inheritdoc}
    */
-  public static function defaultStorageSettings()
-  {
+  public static function defaultStorageSettings() {
     return [] + parent::defaultStorageSettings();
   }
 
   /**
    * {@inheritdoc}
    */
-  public static function defaultFieldSettings()
-  {
+  public static function defaultFieldSettings() {
     return [] + parent::defaultFieldSettings();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function preSave()
-  {
+  public function preSave() {
     parent::preSave();
   }
   /**
    * {@inheritdoc}
    */
-  public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition)
-  {
+  public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
     $properties['red'] = DataDefinition::create('integer')
       ->setLabel(t('Red'))
       ->setRequired(TRUE);
@@ -108,8 +102,7 @@ class CustomFieldTypeTask extends FieldItemBase
    * {@inheritDoc}
    * 
    */
-  public static function generateSampleValue(FieldDefinitionInterface $field_definition)
-  {
+  public static function generateSampleValue(FieldDefinitionInterface $field_definition) {
     $values = [
       'red' => mt_rand(0, 255),
       'green' => mt_rand(0, 255),

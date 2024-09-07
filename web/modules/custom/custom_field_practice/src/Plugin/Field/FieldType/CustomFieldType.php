@@ -18,7 +18,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   default_formatter = "custom_field_practice_formatter"
  * )
  */
-class CustomFieldType extends FieldItemBase{
+class CustomFieldType extends FieldItemBase {
 
   /**
    * {@inheritDoc}

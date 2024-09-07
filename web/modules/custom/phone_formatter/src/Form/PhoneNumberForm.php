@@ -46,7 +46,6 @@ class PhoneNumberForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Display the formatted phone number.
     $phone_number = $form_state->getValue('phone_number');
     \Drupal::messenger()->addMessage($this->t('You have submitted the phone number: @phone_number', ['@phone_number' => $phone_number]));
   }

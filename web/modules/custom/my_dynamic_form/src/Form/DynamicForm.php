@@ -158,7 +158,6 @@ class DynamicForm extends FormBase {
         ->execute();
     }
 
-    // Display a message to the user.
     $this->messenger->addMessage($this->t('Form has been submitted and data has been saved.'));
   }
 

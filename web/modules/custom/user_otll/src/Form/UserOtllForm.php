@@ -49,7 +49,6 @@ class UserOtllForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // This function is required but not used since we're handling the submission with AJAX.
   }
 
   /**

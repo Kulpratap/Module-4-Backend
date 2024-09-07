@@ -16,8 +16,7 @@ use Drupal\Core\Field\FieldItemListInterface;
  *   }
  * )
  */
-class CustomFieldPracticeFormatter extends FormatterBase
-{
+class CustomFieldPracticeFormatter extends FormatterBase {
    
   /**
    * {@inheritdoc}
