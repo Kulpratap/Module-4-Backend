@@ -1,0 +1,22 @@
+# field.field.node.car_brand.body.yml
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.storage.node.body
+        - node.type.moviess
+    module:
+        - text
+id: node.moviess.body
+field_name: body
+entity_type: node
+bundle: moviess
+label: Body
+description: 'More specific information about the moviess.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+    display_summary: true
+field_type: text_with_summary

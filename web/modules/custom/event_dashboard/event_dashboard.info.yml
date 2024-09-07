@@ -1,0 +1,7 @@
+name: 'Event Dashboard'
+type: module
+description: 'Provides a dashboard with event counts yearly, quarterly, and by type.'
+package: Custom
+core_version_requirement: ^10
+dependencies:
+  - drupal:block

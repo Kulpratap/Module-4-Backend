@@ -1,0 +1,114 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for entity_task module.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\user\UserInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function entity_task_theme(): array {
+  return [
+    'movie' => ['render element' => 'elements'],
+  ];
+}
+
+/**
+ * Prepares variables for movie templates.
+ *
+ * Default template: movie.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the movie information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_movie(array &$variables): void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function entity_task_user_cancel($edit, UserInterface $account, $method): void {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      // Unpublish movies.
+      $storage = \Drupal::entityTypeManager()->getStorage('movie');
+      $movie_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->condition('status', 1)
+        ->accessCheck(FALSE)
+        ->execute();
+      foreach ($storage->loadMultiple($movie_ids) as $movie) {
+        $movie->set('status', FALSE)->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      // Anonymize movies.
+      $storage = \Drupal::entityTypeManager()->getStorage('movie');
+      $movie_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->accessCheck(FALSE)
+        ->execute();
+      foreach ($storage->loadMultiple($movie_ids) as $movie) {
+        $movie->setOwnerId(0)->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function entity_task_user_predelete(UserInterface $account): void {
+  // Delete movies that belong to this account.
+  $storage = \Drupal::entityTypeManager()->getStorage('movie');
+  $movie_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->accessCheck(FALSE)
+    ->execute();
+  $storage->delete(
+    $storage->loadMultiple($movie_ids)
+  );
+  // Delete old revisions.
+  $movie_ids = $storage->getQuery()
+    ->allRevisions()
+    ->condition('uid', $account->id())
+    ->accessCheck(FALSE)
+    ->execute();
+  foreach (array_keys($movie_ids) as $revision_id) {
+    $storage->deleteRevision($revision_id);
+  }
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function entity_task_node_view(array &$build, NodeInterface $node, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  if ($node->getType() == 'moviess') {
+    $config = \Drupal::config('entity_task.settings');
+    $budget_amount = $config->get('budget_amount');
+    $movie_price = $node->get('movie_price')->value;
+
+    if ($movie_price < $budget_amount) {
+      $message = 'The movie is under budget';
+    } elseif ($movie_price > $budget_amount) {
+      $message = 'The movie is over budget';
+    } else {
+      $message = 'The movie is within budget';
+    }
+
+    $build['#prefix'] = '<div><strong>' . t($message) . '</strong></div>' . $build['#prefix'];
+  }
+}

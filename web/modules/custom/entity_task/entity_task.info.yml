@@ -1,0 +1,5 @@
+name: 'entity_task'
+type: module
+description: 'Enitity API tasks'
+package: Custom
+core_version_requirement: ^10 || ^11

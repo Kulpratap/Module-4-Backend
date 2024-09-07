@@ -1,0 +1,11 @@
+services:
+  entity_task.event_subscriber_example:
+    class: Drupal\entity_task\EventSubscriber\ExampleEventSubscriber
+    tags:
+      - {name: "event_subscriber"}
+
+  entity_task.movie_node_subscriber:
+    class: Drupal\entity_task\EventSubscriber\MovieNodeSubscriber
+    arguments: ['@config.factory']
+    tags:
+      - { name: event_subscriber }

@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function event_dashboard_theme() {
+  return [
+    'event_dashboard' => [
+      'variables' => [
+        'yearly_counts' => [],
+        'quarterly_counts' => [],
+        'type_counts' => [],
+      ],
+    ],
+  ];
+}

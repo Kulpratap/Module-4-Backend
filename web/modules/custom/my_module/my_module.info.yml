@@ -1,9 +1,0 @@
-name: 'My Module'
-type: module
-description: 'A custom module to demonstrate routing and access control.'
-core_version_requirement: ^10
-package: Custom
-dependencies:
-  - drupal:node
-  - drupal:user
-  - drupal:taxonomy

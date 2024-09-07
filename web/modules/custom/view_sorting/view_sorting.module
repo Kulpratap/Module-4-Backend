@@ -1,0 +1,26 @@
+<?php
+use Drupal\views\ViewExecutable;
+/**
+ * Implements hook_views_query_alter().
+ */
+function view_sorting_views_query_alter(ViewExecutable $view, $query) {
+  if ($view->id() == 'events') {
+    $query->addOrderBy('node__field_event_date', 'field_event_date_value', 'ASC');
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function view_sorting_views_data_alter(array &$data) {
+  $data['node__field_event_type']['relationship_to_event_type'] = [
+    'title' => t('Event Type Relationship'),
+    'help' => t('Relate content to event type.'),
+    'relationship' => [
+      'base' => 'node_field_data',
+      'base field' => 'nid',
+      'relationship field' => 'entity_id',
+      'id' => 'standard',
+    ],
+  ];
+}

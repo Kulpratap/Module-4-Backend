@@ -1,0 +1,27 @@
+administer movie types:
+  title: 'Administer movie types'
+  description: 'Maintain the types of movie entity.'
+  restrict access: true
+view movie:
+  title: 'View movie'
+edit movie:
+  title: 'Edit movie'
+delete movie:
+  title: 'Delete movie'
+create movie:
+  title: 'Create movie'
+view movie revision:
+  title: 'View movie revision'
+revert movie revision:
+  title: 'Revert movie revision'
+delete movie revision:
+  title: 'Delete movie revision'
+
+administer movie_config:
+  title: 'Administer movie config'
+
+administer movies_config:
+  title: 'Administer movies config'
+
+administer movie budget:
+  title: 'Administer movie budget configuration'

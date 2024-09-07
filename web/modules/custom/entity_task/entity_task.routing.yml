@@ -1,0 +1,71 @@
+entity.movie_config.collection:
+  path: '/admin/structure/movie-config'
+  defaults:
+    _entity_list: 'movie_config'
+    _title: 'Movie Config configuration'
+  requirements:
+    _permission: 'administer movie_config'
+
+entity.movie_config.add_form:
+  path: '/admin/structure/movie_config/add'
+  defaults:
+    _entity_form: 'movie_config.add'
+    _title: 'Add a movie config'
+  requirements:
+    _permission: 'administer movie_config'
+
+entity.movie_config.edit_form:
+  path: '/admin/structure/movie-config/{movie_config}'
+  defaults:
+    _entity_form: 'movie_config.edit'
+    _title: 'Edit a movie config'
+  requirements:
+    _permission: 'administer movie_config'
+
+entity.movie_config.delete_form:
+  path: '/admin/structure/movie-config/{movie_config}/delete'
+  defaults:
+    _entity_form: 'movie_config.delete'
+    _title: 'Delete a movie config'
+  requirements:
+    _permission: 'administer movie_config'
+
+entity.movies_config.collection:
+  path: '/admin/structure/movies-config'
+  defaults:
+    _entity_list: 'movies_config'
+    _title: 'Movies COnfig configuration'
+  requirements:
+    _permission: 'administer movies_config'
+
+entity.movies_config.add_form:
+  path: '/admin/structure/movies_config/add'
+  defaults:
+    _entity_form: 'movies_config.add'
+    _title: 'Add a movies config'
+  requirements:
+    _permission: 'administer movies_config'
+
+entity.movies_config.edit_form:
+  path: '/admin/structure/movies-config/{movies_config}'
+  defaults:
+    _entity_form: 'movies_config.edit'
+    _title: 'Edit a movies config'
+  requirements:
+    _permission: 'administer movies_config'
+
+entity.movies_config.delete_form:
+  path: '/admin/structure/movies-config/{movies_config}/delete'
+  defaults:
+    _entity_form: 'movies_config.delete'
+    _title: 'Delete a movies config'
+  requirements:
+    _permission: 'administer movies_config'
+
+entity_task.config_form:
+  path: '/admin/config/movies/budget'
+  defaults:
+    _form: '\Drupal\entity_task\Form\MovieBudgetConfigForm'
+    _title: 'Movie Budget Configuration'
+  requirements:
+    _permission: 'administer movie budget'

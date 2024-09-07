@@ -1,0 +1,8 @@
+node_api.list_nodes:
+  path: '/api/nodes/{content_type}'
+  defaults:
+    _controller: '\Drupal\node_api\Controller\NodeApiController::listNodes'
+    _title: 'List Nodes'
+  requirements:
+    _permission: 'access content'
+  methods: [GET]

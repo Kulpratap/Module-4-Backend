@@ -1,0 +1,24 @@
+<div class="event-dashboard">
+  <h2>Event Dashboard</h2>
+
+  <h3>Event Counts by Year</h3>
+  <ul>
+    {% for year, count in yearly_counts %}
+      <li>{{ year }}: {{ count }} events</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Event Counts by Quarter</h3>
+  <ul>
+    {% for quarter, count in quarterly_counts %}
+      <li>Quarter {{ quarter }}: {{ count }} events</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Event Counts by Type</h3>
+  <ul>
+    {% for type, count in type_counts %}
+      <li>{{ type }}: {{ count }} events</li>
+    {% endfor %}
+  </ul>
+</div>

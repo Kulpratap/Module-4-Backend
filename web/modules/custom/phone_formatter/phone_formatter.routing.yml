@@ -1,0 +1,17 @@
+phone_formatter.form:
+  path: '/phone-number-form'
+  defaults:
+    _form: '\Drupal\phone_formatter\Form\PhoneNumberForm'
+    _title: 'Phone Number Form'
+  requirements:
+    _permission: 'access content'
+
+phone_formatter.menu:
+  path: '/admin/config/system/phone-number-form'
+  defaults:
+    _form: '\Drupal\phone_formatter\Form\PhoneNumberForm'
+    _title: 'Phone Number Form'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
