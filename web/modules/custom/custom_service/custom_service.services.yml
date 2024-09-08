@@ -1,0 +1,4 @@
+services:
+  custom_service.utilityservice:
+    class: 'Drupal\custom_service\UtilityServices'
+    arguments: ['@current_user']

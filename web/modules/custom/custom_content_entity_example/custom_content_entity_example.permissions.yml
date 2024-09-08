@@ -1,0 +1,3 @@
+administer profile:
+  title: 'Administer profiles'
+  restrict access: true

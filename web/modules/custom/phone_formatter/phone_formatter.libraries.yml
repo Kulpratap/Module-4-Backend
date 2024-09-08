@@ -1,0 +1,7 @@
+phone_formatter:
+  version: 1.x
+  js:
+    js/phone_formatter.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once

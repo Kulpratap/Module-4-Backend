@@ -1,0 +1,8 @@
+my_custom_library:
+  version: 1.x
+  js:
+    js/my_custom_module.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/drupalSettings

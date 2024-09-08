@@ -1,0 +1,5 @@
+name: 'My Custom Module'
+type: module
+description: 'A custom module to demonstrate JavaScript and libraries in Drupal.'
+core_version_requirement: ^8 || ^9 || ^10
+package: Custom

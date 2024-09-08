@@ -1,0 +1,36 @@
+entity_task.movie_config.*:
+  type: config_entity
+  label: Movie Config
+  mapping:
+    id:
+      type: string
+      label: ID
+    uuid:
+      type: string
+    title:
+      type: label
+      label: 'Movie title'
+    year:
+      type: string
+      label: 'Year of award'
+
+entity_task.movies_config.*:
+  type: config_entity
+  label: Movies COnfig
+  mapping:
+    id:
+      type: string
+      label: ID
+    label:
+      type: label
+      label: Label
+    uuid:
+      type: string
+    description:
+      type: string
+    year:
+      type: string
+      label: 'Year of award'
+    title:
+      type: label
+      label: 'Movie title'

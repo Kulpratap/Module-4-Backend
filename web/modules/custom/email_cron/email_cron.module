@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * Implements hook_cron().
+ */
+
+function email_cron_cron() {
+
+    $to = 'kulpratap98@gmail.com';
+
+    $subject = 'Scheduled Email';
+
+    $body = 'This is a test email';
+
+    $mailManager = \Drupal::service('plugin.manager.mail');
+    $module = 'email_cron';
+    $key = 'cron_email';
+    $params['message'] = $body;
+    $params['subject'] = $subject;
+    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+    $send = true;
+
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+
+    if ($result['result'] !== true) {
+      \Drupal::logger('email_cron')->error('There was a problem sending your email and it was not sent.');
+    } else {
+      \Drupal::logger('email_cron')->notice('Email sent successfully to ' . $to);
+    }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function email_cron_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'cron_email':
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['message'];
+      break;
+  }
+}

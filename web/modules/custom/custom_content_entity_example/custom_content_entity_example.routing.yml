@@ -1,0 +1,7 @@
+entity.profile.settings:
+  path: 'admin/structure/profile'
+  defaults:
+    _form: '\Drupal\custom_content_entity_example\Form\ProfileSettingsForm'
+    _title: 'Profile'
+  requirements:
+    _permission: 'administer profile'

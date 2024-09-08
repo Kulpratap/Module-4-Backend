@@ -1,0 +1,9 @@
+name: 'Taxonomy Term Info'
+type: module
+description: 'Displays the taxonomy term ID, UUID, and nodes using the term.'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - taxonomy
+  - node
+version: 1.0

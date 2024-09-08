@@ -1,0 +1,6 @@
+services:
+  taxonomy_term_info.form:
+    class: Drupal\taxonomy_term_info\Form\TaxonomyTermInfoForm
+    arguments: ['@entity_type.manager', '@messenger']
+    tags:
+      - { name: form }

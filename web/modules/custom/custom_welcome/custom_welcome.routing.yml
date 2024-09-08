@@ -1,0 +1,7 @@
+custom_welcome.custom_page:
+  path: '/custom-welcome-page'
+  defaults:
+    _controller: '\Drupal\custom_welcome\Controller\CustomWelcomeController::content'
+    _title: 'Custom Welcome Page'
+  requirements:
+    _permission: 'access content'

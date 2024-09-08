@@ -1,0 +1,4 @@
+name: custom field practice
+description: Custom Field type to create a field type for practice
+type: module
+core_version_requirement: ^8 || ^9 || ^10

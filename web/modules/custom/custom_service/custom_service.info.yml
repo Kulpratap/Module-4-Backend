@@ -1,0 +1,7 @@
+name: 'Custom Service'
+type: module
+description: 'Provides custom services.'
+core_version_requirement: ^8 || ^9 || ^10
+package: Custom
+dependencies:
+  - drupal:user

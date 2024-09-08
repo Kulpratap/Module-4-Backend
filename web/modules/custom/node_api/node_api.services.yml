@@ -1,0 +1,4 @@
+services:
+  node_api.node_api_controller:
+    class: Drupal\node_api\Controller\NodeApiController
+    arguments: ['@entity_type.manager']

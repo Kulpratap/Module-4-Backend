@@ -1,0 +1,116 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Provides a custom movie entity type.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_theme()
+ * @param array $variables
+ * @return void
+ */
+function custom_movie_preprocess_node(array &$variables) {
+  if ($variables['node']->getType() === 'movie') {
+    $config = \Drupal::config('custom_movie.settings');
+    $budget_friendly_amount = $config->get('budget_friendly_amount');
+    $movie_price = $variables['node']->get('price')->value; 
+    $budget_message = '';
+    if ($budget_friendly_amount > $movie_price) {
+      $budget_message = '<div class="movie-budget-message"><h2><i>The movie is under budget</i></h2></div>';
+    }
+    elseif ($budget_friendly_amount < $movie_price) {
+      $budget_message = '<div class="movie-budget-message"><h2><i>The movie is over budget</i></h2></div>';
+    }
+    else {
+      $budget_message = '<div class="movie-budget-message"><h2><i>The movie is within budget</i></h2></div>';
+    }
+    $variables['content']['movie_budget_message'] = [
+      '#type' => 'markup',
+      '#markup' => $budget_message,
+      '#weight' => -10,
+      '#cache' => [
+        'max-age' => 0,
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function custom_movie_theme(): array {
+  return [
+    'custom_movie' => ['render element' => 'elements'],
+  ];
+}
+
+/**
+ * Prepares variables for custom movie templates.
+ *
+ * Default template: custom-movie.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the custom movie information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_custom_movie(array &$variables): void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function custom_movie_user_cancel($edit, UserInterface $account, $method): void {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      // Unpublish custom movies.
+      $storage = \Drupal::entityTypeManager()->getStorage('custom_movie');
+      $custom_movie_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->condition('status', 1)
+        ->accessCheck(FALSE)
+        ->execute();
+      foreach ($storage->loadMultiple($custom_movie_ids) as $custom_movie) {
+        $custom_movie->set('status', FALSE)->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      // Anonymize custom movies.
+      $storage = \Drupal::entityTypeManager()->getStorage('custom_movie');
+      $custom_movie_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->accessCheck(FALSE)
+        ->execute();
+      foreach ($storage->loadMultiple($custom_movie_ids) as $custom_movie) {
+        $custom_movie->setOwnerId(0)->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function custom_movie_user_predelete(UserInterface $account): void {
+  // Delete custom movies that belong to this account.
+  $storage = \Drupal::entityTypeManager()->getStorage('custom_movie');
+  $custom_movie_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->accessCheck(FALSE)
+    ->execute();
+  $storage->delete(
+    $storage->loadMultiple($custom_movie_ids)
+  );
+}

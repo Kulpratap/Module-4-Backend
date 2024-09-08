@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function dependency_injection_services_schema() {
+  $schema['customform'] = [
+    'fields' => [
+      'id' => [
+        'description' => 'The Primary Identifier of the record',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'email' => [
+        'description' => 'Email id of the person',
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'name' => [
+        'description' => 'Name of the person',
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'created' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Timestamp for when created',
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+  return $schema;
+}

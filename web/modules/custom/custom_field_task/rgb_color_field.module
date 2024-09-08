@@ -1,0 +1,17 @@
+<?php
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
+
+/**
+ * Implements hook_entity_field_access().
+ */
+function custom_field_task_entity_field_access($op, FieldDefinitionInterface $field_definition, EntityInterface $entity, AccountInterface $account) {
+  if ($field_definition->getType() === 'custom_field_task') {
+    if (!$account->hasPermission('administer site configuration')) {
+      return FALSE;
+    }
+  }
+  return TRUE;
+}

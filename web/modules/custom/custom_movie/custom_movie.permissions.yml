@@ -1,0 +1,7 @@
+administer custom_movie:
+  title: 'Administer custom movies'
+  restrict access: true
+access movie budget form:
+  title: 'Access the Movie Budget configuration form'
+  description: 'Allows users to access and edit the Movie Budget configuration form.'
+  restrict access: TRUE

@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains the main module file for the mymodule module.
+ */
+
+/**
+ * Implements hook_user_login().
+ */
+function custom_welcome_user_login(\Drupal\user\UserInterface $account) {
+  // Ignore password reset.
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name !== 'user.reset.login') {
+    // Do not interfere if a destination was already set.
+    $current_request = \Drupal::service('request_stack')->getCurrentRequest();
+    if (!$current_request->query->get('destination')) {
+      // Default login destination to the dashboard.
+      $current_request->query->set(
+        'destination',
+        \Drupal\Core\Url::fromRoute('custom_welcome.custom_page')->toString()
+      );
+    }
+  }
+}

@@ -1,0 +1,9 @@
+name: 'Phone Formatter'
+type: module
+description: 'Provides a custom form with phone number formatting.'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - core/jquery
+libraries:
+  - phone_formatter/phone_formatter

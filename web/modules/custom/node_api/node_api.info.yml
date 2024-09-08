@@ -1,0 +1,9 @@
+name: 'Node API'
+type: module
+description: 'Provides an API to list nodes of a specific content type.'
+core_version_requirement: ^8 || ^9 || ^10
+package: Custom
+dependencies:
+  - rest
+  - serialization
+  - basic_auth

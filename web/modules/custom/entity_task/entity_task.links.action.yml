@@ -1,0 +1,23 @@
+movie.type_add:
+  title: 'Add movie type'
+  route_name: entity.movie_type.add_form
+  appears_on:
+    - entity.movie_type.collection
+
+movie.add_page:
+  title: 'Add movie'
+  route_name: entity.movie.add_page
+  appears_on:
+    - entity.movie.collection
+
+entity.movie_config.add_form:
+  route_name: 'entity.movie_config.add_form'
+  title: 'Add movie config'
+  appears_on:
+    - entity.movie_config.collection
+
+entity.movies_config.add_form:
+  route_name: 'entity.movies_config.add_form'
+  title: 'Add movies config'
+  appears_on:
+    - entity.movies_config.collection
